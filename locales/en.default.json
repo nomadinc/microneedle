@@ -1,0 +1,9 @@
+{
+  "general": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you requested does not exist.",
+      "link": "Return home"
+    }
+  }
+}

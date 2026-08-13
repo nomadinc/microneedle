@@ -1,0 +1,30 @@
+<main class="minimal-page" id="MainContent" role="main" tabindex="-1">
+  <div class="minimal-page__content">
+    <p>404</p>
+    <h1>{{ 'general.404.title' | t }}</h1>
+    <p>{{ 'general.404.subtext' | t }}</p>
+    <a href="{{ routes.root_url }}">{{ 'general.404.link' | t }}</a>
+  </div>
+</main>
+
+{% stylesheet %}
+  .minimal-page {
+    min-height: 60vh;
+    display: grid;
+    place-items: center;
+    padding: 4rem 1.5rem;
+  }
+
+  .minimal-page__content {
+    width: min(100%, 48rem);
+    margin: 0 auto;
+    text-align: center;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Main 404",
+  "settings": []
+}
+{% endschema %}

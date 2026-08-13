@@ -1,0 +1,32 @@
+<main class="minimal-page" id="MainContent" role="main" tabindex="-1">
+  <article class="minimal-page__content">
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.content != blank %}
+      <div class="minimal-page__rte">{{ page.content }}</div>
+    {% endif %}
+  </article>
+</main>
+
+{% stylesheet %}
+  .minimal-page {
+    min-height: 60vh;
+    padding: 4rem 1.5rem;
+  }
+
+  .minimal-page__content {
+    width: min(100%, 48rem);
+    margin: 0 auto;
+  }
+
+  .minimal-page__rte img {
+    max-width: 100%;
+    height: auto;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Main page",
+  "settings": []
+}
+{% endschema %}
