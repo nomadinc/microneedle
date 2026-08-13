@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Theme information",
+    "theme_name": "Microneedle",
+    "theme_version": "1.0.0",
+    "theme_author": "Nomad Inc",
+    "theme_documentation_url": "https://shopify.dev/docs/storefronts/themes",
+    "theme_support_url": "https://shopify.dev/docs/storefronts/themes"
+  },
+  {
+    "name": "General",
+    "settings": []
+  }
+]
