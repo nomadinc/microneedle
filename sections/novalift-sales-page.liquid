@@ -52,45 +52,7 @@ The original archive included Shopify/app runtime files generated at render time
 </div>
 </div>
 </section>
-<script>
-  (function () {
-    var el = document.getElementById('clockdiv');
-    if (!el) return;
 
-    var hours   = parseInt(el.getAttribute('data-hours'), 10)   || 0;
-    var minutes = parseInt(el.getAttribute('data-minutes'), 10) || 0;
-    var seconds = parseInt(el.getAttribute('data-seconds'), 10) || 0;
-
-    var totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
-
-    var hEl = document.getElementById('hours');
-    var mEl = document.getElementById('minutes');
-    var sEl = document.getElementById('seconds');
-
-    function pad(n) { return String(n).padStart(2, '0'); }
-
-    function tick() {
-      if (totalSeconds <= 0) {
-        clearInterval(timerInterval);
-        hEl.textContent = '00';
-        mEl.textContent = '00';
-        sEl.textContent = '00';
-        return;
-      }
-      totalSeconds--;
-      hEl.textContent = pad(Math.floor(totalSeconds / 3600));
-      mEl.textContent = pad(Math.floor((totalSeconds % 3600) / 60));
-      sEl.textContent = pad(totalSeconds % 60);
-    }
-
-    // Set initial display immediately
-    hEl.textContent = pad(hours);
-    mEl.textContent = pad(minutes);
-    sEl.textContent = pad(seconds);
-
-    var timerInterval = setInterval(tick, 1000);
-  })();
-</script>
 </div><div class="novalift-block"><div class="top-fix-bar fixed-nav">
 <div class="header">
 <div class="container">
@@ -177,30 +139,7 @@ The original archive included Shopify/app runtime files generated at render time
 </div>
 </div>
 </div>
-<script>
-  (function () {
-    var hamburger = document.querySelector('.header__hamburger');
-    var mobileMenu = document.getElementById('mobile-menu');
-    if (!hamburger || !mobileMenu) return;
 
-    hamburger.addEventListener('click', function () {
-      var isOpen = mobileMenu.classList.toggle('is-open');
-      hamburger.classList.toggle('is-active', isOpen);
-      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-    });
-
-    // Close on outside click
-    document.addEventListener('click', function (e) {
-      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-        mobileMenu.classList.remove('is-open');
-        hamburger.classList.remove('is-active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-      }
-    });
-  })();
-</script>
 </div><div class="novalift-block"><div class="banner-section">
 <div class="container">
 <div class="banner-inner">
@@ -792,79 +731,7 @@ That is it. No routine. No reapplying. No waiting for something to soak in that 
 <div class="bar-dots"><button aria-label="Go to slide 1" class="bar-dot is-active"></button><button aria-label="Go to slide 2" class="bar-dot"></button></div>
 </div>
 </div>
-<script>
-(function () {
-  var section = document.querySelector('.bar-section');
-  if (!section) return;
 
-  var track     = section.querySelector('.bar-track');
-  var cards     = Array.from(section.querySelectorAll('.bar-card'));
-  var prevBtn   = section.querySelector('.bar-nav--prev');
-  var nextBtn   = section.querySelector('.bar-nav--next');
-  var dotsWrap  = section.querySelector('.bar-dots');
-
-  var perPage   = window.innerWidth <= 767 ? 1 : 3;
-  var current   = 0;
-  var total     = Math.ceil(cards.length / perPage);
-
-  /* ── Dots ── */
-  for (var d = 0; d < total; d++) {
-    var dot = document.createElement('button');
-    dot.className = 'bar-dot' + (d === 0 ? ' is-active' : '');
-    dot.setAttribute('aria-label', 'Go to slide ' + (d + 1));
-    dotsWrap.appendChild(dot);
-  }
-  var dots = Array.from(dotsWrap.querySelectorAll('.bar-dot'));
-
-  function goTo(idx) {
-    current = Math.max(0, Math.min(idx, total - 1));
-    var cardW   = cards[0].offsetWidth;
-    var gap     = 16;
-    track.style.transform = 'translateX(-' + (current * perPage * (cardW + gap)) + 'px)';
-    dots.forEach(function (d, i) {
-      d.classList.toggle('is-active', i === current);
-    });
-  }
-
-  prevBtn.addEventListener('click', function () { goTo(current - 1); });
-  nextBtn.addEventListener('click', function () { goTo(current + 1); });
-  dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
-
-  window.addEventListener('resize', function () {
-    perPage = window.innerWidth <= 767 ? 1 : 3;
-    total   = Math.ceil(cards.length / perPage);
-    goTo(0);
-  });
- 
-  /* ── Mobile Swipe Support ── */
-  var startX = 0;
-  var endX = 0;
-  var minSwipeDistance = 50;
-
-  track.addEventListener('touchstart', function(e) {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-
-  track.addEventListener('touchmove', function(e) {
-    endX = e.touches[0].clientX;
-  }, { passive: true });
-
-  track.addEventListener('touchend', function() {
-    var distance = startX - endX;
-
-    if (Math.abs(distance) > minSwipeDistance) {
-      if (distance > 0) {
-        goTo(current + 1); // swipe left
-      } else {
-        goTo(current - 1); // swipe right
-      }
-    }
-
-    startX = 0;
-    endX = 0;
-  });
-})();
-</script>
 </div><div class="novalift-block"><div class="htu-section" id="how_to_use">
 <div class="container">
 <!-- Heading -->
@@ -2205,39 +2072,7 @@ That is it. No routine. No reapplying. No waiting for something to soak in that 
 </div>
 </div>
 </section>
-<script>
-  document.querySelectorAll('.section-novalift-sales-page .acdn-heading').forEach(function (heading) {
-    heading.setAttribute('role', 'button');
-    heading.setAttribute('tabindex', '0');
-    heading.setAttribute('aria-expanded', heading.classList.contains('accordion-open') ? 'true' : 'false');
 
-    function toggleAnswer() {
-      var answer = heading.nextElementSibling;
-      var isOpen = heading.getAttribute('aria-expanded') === 'true';
-
-      document.querySelectorAll('.section-novalift-sales-page .acdn-heading').forEach(function (otherHeading) {
-        var otherAnswer = otherHeading.nextElementSibling;
-        otherHeading.classList.remove('accordion-open');
-        otherHeading.setAttribute('aria-expanded', 'false');
-        if (otherAnswer && otherAnswer.classList.contains('acdn-content')) otherAnswer.hidden = true;
-      });
-
-      if (!isOpen && answer) {
-        heading.classList.add('accordion-open');
-        heading.setAttribute('aria-expanded', 'true');
-        answer.hidden = false;
-      }
-    }
-
-    heading.addEventListener('click', toggleAnswer);
-    heading.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleAnswer();
-      }
-    });
-  });
-</script>
 <style>
     .faq-section{
      background: #fff;
