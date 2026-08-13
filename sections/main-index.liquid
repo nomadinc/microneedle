@@ -1,0 +1,37 @@
+<main class="minimal-page" id="MainContent" role="main" tabindex="-1">
+  <div class="minimal-page__content">
+    <h1>{{ shop.name | escape }}</h1>
+    {% if section.settings.text != blank %}
+      <div class="minimal-page__text">{{ section.settings.text }}</div>
+    {% endif %}
+  </div>
+</main>
+
+{% stylesheet %}
+  .minimal-page {
+    min-height: 60vh;
+    display: grid;
+    place-items: center;
+    padding: 4rem 1.5rem;
+  }
+
+  .minimal-page__content {
+    width: min(100%, 48rem);
+    margin: 0 auto;
+    text-align: center;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Main home page",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Create a page and assign the page.novalift template to publish the NovaLift landing page.</p>"
+    }
+  ]
+}
+{% endschema %}
