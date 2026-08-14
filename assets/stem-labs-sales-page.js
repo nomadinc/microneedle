@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  if (window.NovaLiftSalesPage) {
-    window.NovaLiftSalesPage.scan(document);
+  if (window.StemLabsSalesPage) {
+    window.StemLabsSalesPage.scan(document);
     return;
   }
 
@@ -10,9 +10,9 @@
 
   function getSections(scope) {
     var sections = [];
-    if (scope && scope.matches && scope.matches('.section-novalift-sales-page')) sections.push(scope);
+    if (scope && scope.matches && scope.matches('.section-stem-labs-sales-page')) sections.push(scope);
     if (scope && scope.querySelectorAll) {
-      scope.querySelectorAll('.section-novalift-sales-page').forEach(function (section) {
+      scope.querySelectorAll('.section-stem-labs-sales-page').forEach(function (section) {
         if (sections.indexOf(section) === -1) sections.push(section);
       });
     }
@@ -237,18 +237,18 @@
       var cartChangeUrl = root + 'cart/change.js';
       var cartUrl = root + 'cart.js';
       var checkoutUrl = root + 'checkout';
-      var overlay = section.querySelector('#nlCartOverlay');
-      var drawer = section.querySelector('#nlCartDrawer');
-      var closeButton = section.querySelector('#nlCloseCart');
-      var cartBody = section.querySelector('#nlCartBody');
-      var cartFooter = section.querySelector('#nlCartFooter');
-      var subtotal = section.querySelector('#nlSubtotal');
-      var savingsRow = section.querySelector('#nlSavingsRow');
-      var checkoutButton = section.querySelector('#nlCheckoutBtn');
-      var cartButton = section.querySelector('#nlCartIconBtn');
-      var badge = section.querySelector('#nlCartBadge');
-      var toast = section.querySelector('#nlToast');
-      var toastMessage = section.querySelector('#nlToastMsg');
+      var overlay = section.querySelector('#slCartOverlay');
+      var drawer = section.querySelector('#slCartDrawer');
+      var closeButton = section.querySelector('#slCloseCart');
+      var cartBody = section.querySelector('#slCartBody');
+      var cartFooter = section.querySelector('#slCartFooter');
+      var subtotal = section.querySelector('#slSubtotal');
+      var savingsRow = section.querySelector('#slSavingsRow');
+      var checkoutButton = section.querySelector('#slCheckoutBtn');
+      var cartButton = section.querySelector('#slCartIconBtn');
+      var badge = section.querySelector('#slCartBadge');
+      var toast = section.querySelector('#slToast');
+      var toastMessage = section.querySelector('#slToastMsg');
       var toastTimer;
 
       function request(url, options) {
@@ -297,13 +297,13 @@
 
       function renderLoading() {
         if (!cartBody || !cartFooter) return;
-        cartBody.innerHTML = '<div class="nl-loading"><div class="nl-spinner"></div></div>';
+        cartBody.innerHTML = '<div class="sl-loading"><div class="sl-spinner"></div></div>';
         cartFooter.style.display = 'none';
       }
 
       function renderCartError() {
         if (destroyed || !cartBody || !cartFooter) return;
-        cartBody.innerHTML = '<div class="nl-cart-empty"><p>Could not load cart.</p><span>Please refresh and try again.</span></div>';
+        cartBody.innerHTML = '<div class="sl-cart-empty"><p>Could not load cart.</p><span>Please refresh and try again.</span></div>';
         cartFooter.style.display = 'none';
       }
 
@@ -329,7 +329,7 @@
       function makeButton(label, action, key, quantity) {
         var button = document.createElement('button');
         button.type = 'button';
-        button.className = action === 'remove' ? 'nl-remove-btn' : 'nl-qty-btn';
+        button.className = action === 'remove' ? 'sl-remove-btn' : 'sl-qty-btn';
         button.dataset.action = action;
         button.dataset.key = key;
         if (typeof quantity === 'number') button.dataset.quantity = String(quantity);
@@ -340,39 +340,39 @@
 
       function renderItem(item) {
         var row = document.createElement('div');
-        row.className = 'nl-cart-item';
+        row.className = 'sl-cart-item';
         row.dataset.key = item.key;
         if (item.image) {
           var image = document.createElement('img');
-          image.className = 'nl-item-img';
+          image.className = 'sl-item-img';
           image.src = item.image;
           image.alt = item.product_title || '';
           image.loading = 'lazy';
           row.appendChild(image);
         }
         var info = document.createElement('div');
-        info.className = 'nl-item-info';
+        info.className = 'sl-item-info';
         var title = document.createElement('p');
-        title.className = 'nl-item-title';
+        title.className = 'sl-item-title';
         title.textContent = item.product_title;
         info.appendChild(title);
         if (item.variant_title && item.variant_title !== 'Default Title') {
           var variant = document.createElement('p');
-          variant.className = 'nl-item-variant';
+          variant.className = 'sl-item-variant';
           variant.textContent = item.variant_title;
           info.appendChild(variant);
         }
         var bottom = document.createElement('div');
-        bottom.className = 'nl-item-bottom';
+        bottom.className = 'sl-item-bottom';
         var price = document.createElement('span');
-        price.className = 'nl-item-price';
+        price.className = 'sl-item-price';
         price.textContent = formatMoney(item.final_line_price);
         bottom.appendChild(price);
         var controls = document.createElement('div');
-        controls.className = 'nl-item-controls';
+        controls.className = 'sl-item-controls';
         controls.appendChild(makeButton('Decrease quantity', 'decrease', item.key, item.quantity - 1));
         var quantity = document.createElement('span');
-        quantity.className = 'nl-qty-val';
+        quantity.className = 'sl-qty-val';
         quantity.textContent = item.quantity;
         controls.appendChild(quantity);
         controls.appendChild(makeButton('Increase quantity', 'increase', item.key, item.quantity + 1));
@@ -389,14 +389,14 @@
         cartBody.replaceChildren();
         if (!cart.items || cart.items.length === 0) {
           var empty = document.createElement('div');
-          empty.className = 'nl-cart-empty';
+          empty.className = 'sl-cart-empty';
           empty.innerHTML = '<p>Your cart is empty</p><span>Add a package above to get started.</span>';
           cartBody.appendChild(empty);
           cartFooter.style.display = 'none';
           return;
         }
         var items = document.createElement('div');
-        items.className = 'nl-cart-items';
+        items.className = 'sl-cart-items';
         cart.items.forEach(function (item) { items.appendChild(renderItem(item)); });
         cartBody.appendChild(items);
         if (subtotal) subtotal.textContent = formatMoney(cart.total_price);
@@ -450,10 +450,10 @@
         var actionButton = event.target.closest('[data-action]');
         if (actionButton && cartBody && cartBody.contains(actionButton)) {
           var quantity = actionButton.dataset.action === 'remove' ? 0 : Number(actionButton.dataset.quantity);
-          var line = actionButton.closest('.nl-cart-item');
-          if (line) line.classList.add('nl-updating');
+          var line = actionButton.closest('.sl-cart-item');
+          if (line) line.classList.add('sl-updating');
           changeLine(actionButton.dataset.key, quantity).then(renderCart).catch(function () {
-            if (line) line.classList.remove('nl-updating');
+            if (line) line.classList.remove('sl-updating');
             if (!destroyed) showToast('Could not update cart. Please try again.', true);
           });
         }
@@ -492,14 +492,14 @@
         intervals.forEach(window.clearInterval);
         timeouts.forEach(window.clearTimeout);
         document.body.style.overflow = '';
-        section.removeAttribute('data-novalift-initialized');
+        section.removeAttribute('data-stem-labs-initialized');
       }
     };
   }
 
   function initialize(section) {
     if (!section || controllers.has(section)) return;
-    section.dataset.novaliftInitialized = 'true';
+    section.dataset.stemLabsInitialized = 'true';
     controllers.set(section, createController(section));
   }
 
@@ -514,7 +514,7 @@
     getSections(scope || document).forEach(initialize);
   }
 
-  window.NovaLiftSalesPage = { scan: scan, destroy: destroy };
+  window.StemLabsSalesPage = { scan: scan, destroy: destroy };
 
   document.addEventListener('shopify:section:load', function (event) {
     getSections(event.target).forEach(initialize);
