@@ -1990,11 +1990,27 @@ That is it. No routine. No reapplying. No waiting for something to soak in that 
   text-decoration: line-through;
 }
 @media (max-width:768px){
+ .header__logo {
+  flex: 0 1 96px;
+  min-width: 0;
+ }
+ .header__logo .logo {
+  width: auto !important;
+  max-width: 96px;
+  height: 36px;
+  margin: 0 !important;
+  object-fit: contain;
+  float: none;
+ }
+ .header__right {
+  margin-left: auto;
+  gap: 8px;
+ }
  .sl-cart-icon-btn{
-  position:absolute;
+  position:relative;
   margin: 0;
-    top: -11px;
-    right: 15px;
+  top: auto;
+  right: auto;
 }
 }
 
