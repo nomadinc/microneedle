@@ -1425,75 +1425,52 @@ That is it. No routine. No reapplying. No waiting for something to soak in that 
 <br class="formob"/>
       Stem Labs Packages
     </p>
+{% assign product_4 = section.settings.offer_4_product %}
+{% assign variant_4 = product_4.selected_or_first_available_variant %}
+{% assign product_12 = section.settings.offer_12_product %}
+{% assign variant_12 = product_12.selected_or_first_available_variant %}
+{% assign product_20 = section.settings.offer_20_product %}
+{% assign variant_20 = product_20.selected_or_first_available_variant %}
 <div class="package-box">
 <div class="package package1">
 <div class="pck-qty">
-<p class="pck-qty-text1">Buy 6 Packs</p>
-<p class="pck-qty-text2">(12 Patches)</p>
+<p class="pck-qty-text1">Buy 4 Packs</p>
+<p class="pck-qty-text2">(8 Patches)</p>
 </div>
 <div class="pck-prod-box">
-<img alt="prod" class="pack-products" src="{{ 'pack6-products_982420be-438a-4f7a-8f0a-3442c7681c73.webp' | asset_url }}"/>
+<img alt="4 Pack" class="pack-products" src="{{ 'stem-labs-4-pack.png' | asset_url }}"/>
 </div>
 <div class="pck-opt-prc">
+{% if variant_4 != blank %}
 <p class="pck-offer-price">
-<del><span class="money">$99.99</span></del>
-<span class="money">$33.95</span>
+{% if variant_4.compare_at_price > variant_4.price %}
+<del><span class="money">{{ variant_4.compare_at_price | money }}</span></del>
+{% endif %}
+<span class="money">{{ variant_4.price | money }}</span>
 </p>
+{% if variant_4.compare_at_price > variant_4.price %}
+{% assign savings_4 = variant_4.compare_at_price | minus: variant_4.price %}
 <p class="save_text">
-                
-                  
-                  You Save: <span class="money">$66.04</span>
+                  You Save: <span class="money">{{ savings_4 | money }}</span>
 </p>
+{% endif %}
+{% else %}
+<p class="pck-offer-price"><span class="money">Unavailable</span></p>
+{% endif %}
 </div>
 <div class="button_box">
 <p class="button-text1">
 <img alt="icn" src="{{ 'timer-icn_9221fb8b-1775-4d6e-8911-2424d742ea6c-1.webp' | asset_url }}"/>
               Next batch ships <span style="padding-left: 3px;">August 15th</span>
 </p>
-<a class="commonBtn atc_btn" data-variant-id="{{ section.settings.variant_1_id }}" href="#package_sec">
+{% if variant_4 != blank and variant_4.available %}
+<a class="commonBtn atc_btn" data-variant-id="{{ variant_4.id }}" href="#package_sec">
               Add To Cart
               <img alt="arw" class="btn-arrow" src="{{ 'btn-arrow_2d27ad7a-ed9d-498d-8d81-1d8047789836.webp' | asset_url }}"/>
 </a>
-<ul class="button-list">
-<li>
-<img alt="" class="btn-list-icn1" src="{{ 'dollar_a9f7e603-8c0c-4871-be5d-282c5c4f45e4.webp' | asset_url }}"/>
-                  30 Day Money Back Guarantee
-                </li>
-<li>
-<img alt="" class="btn-list-icn1" src="{{ 'shiping_47e593be-467a-406d-a197-f0a3d76e67e7.webp' | asset_url }}"/>
-                  Free Shipping
-                </li>
-</ul>
-</div>
-</div>
-<div class="package package3">
-<div class="pck-qty">
-<p class="pck-qty-text1">Buy 8 Packs</p>
-<p class="pck-qty-text2">(16 Patches)</p>
-</div>
-<div class="pck-prod-box">
-<img alt="prod" class="pack-products" src="{{ 'pack8-products_0eb54cba-0cb4-47e7-9f32-4daadb3a108b.webp' | asset_url }}"/>
-</div>
-<div class="pck-opt-prc">
-<p class="pck-offer-price">
-<del><span class="money">$199.98</span></del>
-<span class="money">$42.95</span>
-</p>
-<p class="save_text">
-                
-                  
-                  You Save: <span class="money">$157.03</span>
-</p>
-</div>
-<div class="button_box">
-<p class="button-text1">
-<img alt="icn" src="{{ 'timer-icn_9221fb8b-1775-4d6e-8911-2424d742ea6c-1.webp' | asset_url }}"/>
-              Next batch ships <span style="padding-left: 3px;">August 15th</span>
-</p>
-<a class="commonBtn atc_btn" data-variant-id="{{ section.settings.variant_2_id }}" href="#package_sec">
-              Add To Cart
-              <img alt="arw" class="btn-arrow" src="{{ 'btn-arrow_2d27ad7a-ed9d-498d-8d81-1d8047789836.webp' | asset_url }}"/>
-</a>
+{% else %}
+<span aria-disabled="true" class="commonBtn">Unavailable</span>
+{% endif %}
 <ul class="button-list">
 <li>
 <img alt="" class="btn-list-icn1" src="{{ 'dollar_a9f7e603-8c0c-4871-be5d-282c5c4f45e4.webp' | asset_url }}"/>
@@ -1509,32 +1486,94 @@ That is it. No routine. No reapplying. No waiting for something to soak in that 
 <div class="package package2">
 <div class="most-pouplar">most popular</div>
 <div class="pck-qty">
-<p class="pck-qty-text1">Buy 16 Packs</p>
-<p class="pck-qty-text2">(32 Patches)</p>
+<p class="pck-qty-text1">Buy 12 Packs</p>
+<p class="pck-qty-text2">(24 Patches)</p>
 </div>
 <div class="pck-prod-box">
-<img alt="prod" class="pack-products" src="{{ 'pack16-products_0084da2b-7f84-46c9-b557-35a8d0cbbd8f.webp' | asset_url }}"/>
+<img alt="12 Pack" class="pack-products" src="{{ 'stem-labs-12-pack.png' | asset_url }}"/>
 </div>
 <div class="pck-opt-prc">
+{% if variant_12 != blank %}
 <p class="pck-offer-price">
-<del><span class="money">$299.97</span></del>
-<span class="money">$82.95</span>
+{% if variant_12.compare_at_price > variant_12.price %}
+<del><span class="money">{{ variant_12.compare_at_price | money }}</span></del>
+{% endif %}
+<span class="money">{{ variant_12.price | money }}</span>
 </p>
+{% if variant_12.compare_at_price > variant_12.price %}
+{% assign savings_12 = variant_12.compare_at_price | minus: variant_12.price %}
 <p class="save_text">
-                
-                  
-                  You Save: <span class="money">$217.02</span>
+                  You Save: <span class="money">{{ savings_12 | money }}</span>
 </p>
+{% endif %}
+{% else %}
+<p class="pck-offer-price"><span class="money">Unavailable</span></p>
+{% endif %}
 </div>
 <div class="button_box">
 <p class="button-text1">
 <img alt="icn" src="{{ 'timer-icn_9221fb8b-1775-4d6e-8911-2424d742ea6c-1.webp' | asset_url }}"/>
               Next batch ships <span style="padding-left: 3px;">August 15th</span>
 </p>
-<a class="commonBtn atc_btn" data-variant-id="{{ section.settings.variant_3_id }}" href="#package_sec">
+{% if variant_12 != blank and variant_12.available %}
+<a class="commonBtn atc_btn" data-variant-id="{{ variant_12.id }}" href="#package_sec">
               Add To Cart
               <img alt="arw" class="btn-arrow" src="{{ 'btn-arrow_2d27ad7a-ed9d-498d-8d81-1d8047789836.webp' | asset_url }}"/>
 </a>
+{% else %}
+<span aria-disabled="true" class="commonBtn">Unavailable</span>
+{% endif %}
+<ul class="button-list">
+<li>
+<img alt="" class="btn-list-icn1" src="{{ 'dollar_a9f7e603-8c0c-4871-be5d-282c5c4f45e4.webp' | asset_url }}"/>
+                  30 Day Money Back Guarantee
+                </li>
+<li>
+<img alt="" class="btn-list-icn1" src="{{ 'shiping_47e593be-467a-406d-a197-f0a3d76e67e7.webp' | asset_url }}"/>
+                  Free Shipping
+                </li>
+</ul>
+</div>
+</div>
+<div class="package package3">
+<div class="pck-qty">
+<p class="pck-qty-text1">Buy 20 Packs</p>
+<p class="pck-qty-text2">(40 Patches)</p>
+</div>
+<div class="pck-prod-box">
+<img alt="20 Pack" class="pack-products" src="{{ 'stem-labs-20-pack.png' | asset_url }}"/>
+</div>
+<div class="pck-opt-prc">
+{% if variant_20 != blank %}
+<p class="pck-offer-price">
+{% if variant_20.compare_at_price > variant_20.price %}
+<del><span class="money">{{ variant_20.compare_at_price | money }}</span></del>
+{% endif %}
+<span class="money">{{ variant_20.price | money }}</span>
+</p>
+{% if variant_20.compare_at_price > variant_20.price %}
+{% assign savings_20 = variant_20.compare_at_price | minus: variant_20.price %}
+<p class="save_text">
+                  You Save: <span class="money">{{ savings_20 | money }}</span>
+</p>
+{% endif %}
+{% else %}
+<p class="pck-offer-price"><span class="money">Unavailable</span></p>
+{% endif %}
+</div>
+<div class="button_box">
+<p class="button-text1">
+<img alt="icn" src="{{ 'timer-icn_9221fb8b-1775-4d6e-8911-2424d742ea6c-1.webp' | asset_url }}"/>
+              Next batch ships <span style="padding-left: 3px;">August 15th</span>
+</p>
+{% if variant_20 != blank and variant_20.available %}
+<a class="commonBtn atc_btn" data-variant-id="{{ variant_20.id }}" href="#package_sec">
+              Add To Cart
+              <img alt="arw" class="btn-arrow" src="{{ 'btn-arrow_2d27ad7a-ed9d-498d-8d81-1d8047789836.webp' | asset_url }}"/>
+</a>
+{% else %}
+<span aria-disabled="true" class="commonBtn">Unavailable</span>
+{% endif %}
 <ul class="button-list">
 <li>
 <img alt="" class="btn-list-icn1" src="{{ 'dollar_a9f7e603-8c0c-4871-be5d-282c5c4f45e4.webp' | asset_url }}"/>
@@ -2125,11 +2164,11 @@ That is it. No routine. No reapplying. No waiting for something to soak in that 
   "tag": "section",
   "class": "section-stem-labs-sales-page",
   "settings": [
-    {"type":"header","content":"Destination store setup required"},
-    {"type":"paragraph","content":"Enter variant IDs from the destination store. Empty IDs disable the related Add to Cart button."},
-    {"type":"text","id":"variant_1_id","label":"Offer 1 variant ID","info":"PLACEHOLDER — replace with a destination-store variant ID"},
-    {"type":"text","id":"variant_2_id","label":"Offer 2 variant ID","info":"PLACEHOLDER — replace with a destination-store variant ID"},
-    {"type":"text","id":"variant_3_id","label":"Offer 3 variant ID","info":"PLACEHOLDER — replace with a destination-store variant ID"}
+    {"type":"header","content":"Shopify offer products"},
+    {"type":"paragraph","content":"Select the Shopify product for each offer. Pricing, compare-at pricing, availability, and cart variant IDs come from the selected product's first available variant."},
+    {"type":"product","id":"offer_4_product","label":"4 Pack Shopify Product"},
+    {"type":"product","id":"offer_12_product","label":"12 Pack Shopify Product"},
+    {"type":"product","id":"offer_20_product","label":"20 Pack Shopify Product"}
   ],
   "presets": [{"name":"Stem Labs sales page"}]
 }
