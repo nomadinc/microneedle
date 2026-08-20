@@ -1,8 +1,21 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "stem-labs-sales-page",
-      "settings": {}
+      "settings": {
+        "offer_4_product": "6-stem-labs-eye-patches",
+        "offer_12_product": "8-stem-lab-eye-patches",
+        "offer_20_product": "16-steb-labs-eye-patches"
+      }
     }
   },
   "order": [
